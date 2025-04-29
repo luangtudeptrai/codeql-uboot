@@ -49,37 +49,7 @@ pragma solidity ^0.8.0;
 contract DiplomaContract {
     address public owner;
 
-    constructor() {
-        owner = msg.sender;
-    }
-
-    struct Diploma {
-        string studentName;
-        string degree;
-        string major;
-        uint256 issueDate;
-        bool isValid;
-    }
-
-    mapping(string => Diploma) public diplomas;
-
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Not authorized");
-        _;
-    }
-
-    function issueDiploma(string memory diplomaId, string memory studentName, string memory degree, string memory major) public onlyOwner {
-        diplomas[diplomaId] = Diploma(studentName, degree, major, block.timestamp, true);
-    }
-
-    function verifyDiploma(string memory diplomaId) public view returns (bool) {
-        return diplomas[diplomaId].isValid;
-    }
-
-    function revokeDiploma(string memory diplomaId) public onlyOwner {
-        diplomas[diplomaId].isValid = false;
-    }
-}
+  
 🔹 4. Kiểm thử và triển khai
 Dùng Remix IDE để kiểm thử (testnet như Goerli, Sepolia).
 
